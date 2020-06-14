@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="top.BinGCU.dao.CustomerMapper">
+    <select id="getCustomerByName" resultType="top.BinGCU.pojo.Customer">
+        select cname, age from customer where cname=#{name}
+    </select>
+
+    <insert id="insertOneCustomer" parameterType="top.BinGCU.pojo.Customer">
+        insert into customer set cname=#{cname}, age=#{age}
+    </insert>
+
+    <delete id="deleteCustomersByName">
+        delete from customer where cname=#{name}
+    </delete>
+</mapper>

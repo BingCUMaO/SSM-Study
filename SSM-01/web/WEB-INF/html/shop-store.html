@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shop-store-----</title>
+</head>
+
+<body>
+    <h1>XXXDatas.....</h1>
+    <div id="resp-content"></div>
+
+
+    <input id="in" value=""/>
+    <input type="button" onclick="buyBook()">
+</body>
+
+<script>
+    var buyBook = function () {
+        var texthttp;
+        if(window.XMLHttpRequest){
+            //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            texthttp = new XMLHttpRequest();
+        }else {
+            // IE6, IE5 浏览器执行代码
+            texthttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+
+        let datas;
+        texthttp.onreadystatechange= function(){
+            console.log("In onreadystatechange and outside if");
+            if (texthttp.readyState == 4 && texthttp.status == 200) {
+                 datas= texthttp.responseText;
+                console.log(datas)
+                document.getElementById("resp-content").innerText = datas;
+            }
+        }
+
+
+        var bookName = document.getElementById("in").value;
+        console.log("bookName:" + bookName);
+
+        texthttp.open("GET", "/SSM_01/shop-store/buy-book/"+bookName, true);
+        texthttp.send();
+
+
+        console.log("----->"+texthttp.responseText)
+        console.log("outside...");
+    }
+
+
+
+
+    // function getJSON(url) {
+    //     return new Promise(function(resolve, reject) {
+    //         let xhr = null;
+    //         try{
+    //             xhr = new XMLHttpRequest();
+    //         }catch (e) {
+    //             xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    //         }
+    //         xhr.open("GET", url, true);
+    //         xhr.onreadystatechange = function() {
+    //             if (this.readyState !== 4) return;
+    //             if (this.status === 200) {
+    //                 resolve(this.response);
+    //             } else {
+    //                 console.log(this.statusText);
+    //                 reject(new Error(this.statusText));
+    //             }
+    //         };
+    //         xhr.send();
+    //     });
+    // }
+    //
+    // var buyBook = function () {
+    //     let url = "/shop-store/buy-book/《JJJ07》";
+    //     let result = getJSON(url);
+    //
+    //
+    //
+    //     result.then((data)=>{
+    //         console.log(data)
+    //     });
+    // }
+</script>
+
+</html>

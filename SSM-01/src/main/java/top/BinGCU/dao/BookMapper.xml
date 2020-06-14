@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.BinGCU.dao.BookMapper">
+    <select id="getBookByName" resultType="top.BinGCU.pojo.Book">
+        select book_name as bookName, info from book where book_name=#{name}
+    </select>
+
+    <insert id="insertOneBook" parameterType="top.BinGCU.pojo.Book">
+        insert into book set book_name=#{bookName}, info=#{info}
+    </insert>
+
+    <delete id="deleteBooksByName">
+        delete from book where book_name=#{name}
+    </delete>
+</mapper>
+
